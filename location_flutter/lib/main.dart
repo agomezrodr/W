@@ -6,6 +6,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
+  //widget to set up them and color
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Get Location',
@@ -16,12 +17,14 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+// DDraw icon
 class DrawerItem {
   String title;
   IconData icon;
   DrawerItem(this.title, this.icon);
 }
 
+//Add icon to specific fragments
 class HomePage extends StatefulWidget {
   final drawerItems = [
     new DrawerItem("Panic Alert", Icons.add_alert),
@@ -29,13 +32,14 @@ class HomePage extends StatefulWidget {
     new DrawerItem("Instruction", Icons.filter_frames),
     new DrawerItem("About", Icons.info),
     new DrawerItem("Exit", Icons.exit_to_app)
-
   ];
   @override
   State<StatefulWidget> createState() {
     return new HomePageState();
   }
 }
+
+//Display selected fragment
 class HomePageState extends State<HomePage> {
   int _selectedDrawerIndex = 0;
 
@@ -56,11 +60,13 @@ class HomePageState extends State<HomePage> {
     }
   }
 
+  //Fragment box
   _onSelectItem(int index) {
     setState(() => _selectedDrawerIndex = index);
     Navigator.of(context).pop(); // close the drawer
   }
 
+  //Widget create fragments
   @override
   Widget build(BuildContext context) {
     var drawerOptions = <Widget>[];
@@ -75,7 +81,6 @@ class HomePageState extends State<HomePage> {
           )
       );
     }
-
     return new Scaffold(
       appBar: new AppBar(
         // here we display the title corresponding to the fragment
@@ -96,13 +101,13 @@ class HomePageState extends State<HomePage> {
   }
 }
 
+//  Get location class to create _GetLocationPageState
 class GetLocationPage extends StatefulWidget {
-
-
   @override
   _GetLocationPageState createState() => _GetLocationPageState();
 }
 
+//Class to find latitude and longitude
 class _GetLocationPageState extends State<GetLocationPage> {
   var location = new Location();
   Map<String, double> userLocation;
@@ -144,6 +149,7 @@ class _GetLocationPageState extends State<GetLocationPage> {
     );
   }
 
+  //get new location when user change fragment
   Future<Map<String, double>> _getLocation() async {
     var currentLocation = <String, double>{};
     try {
@@ -155,6 +161,8 @@ class _GetLocationPageState extends State<GetLocationPage> {
   }
 
 }
+
+//First fragment to get location in panic event
 class FirstFragment extends StatelessWidget {
   @override
 
@@ -164,7 +172,7 @@ class FirstFragment extends StatelessWidget {
     );
   }
 }
-
+// Second fragment to create a report.
 class SecondFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -201,7 +209,7 @@ class SecondFragment extends StatelessWidget {
 
 }
 
-
+// Third Fragment to define instructions
 class ThirdFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -225,6 +233,8 @@ class ThirdFragment extends StatelessWidget {
     );
   }
 }
+
+// Fouth fragment to explain what the app is for.
 class FourthFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -291,6 +301,7 @@ class FourthFragment extends StatelessWidget {
   }
 }
 
+// Fifth fragment to exit the app.
 class FifthFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
